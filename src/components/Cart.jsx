@@ -1,11 +1,11 @@
 import React from "react";
-import { AiOutlineShoppingCart, AiOutlineDollar } from "react-icons/all";
+import { AiOutlineShoppingCart, AiOutlineDollar } from "react-icons/ai";
 
 function Cart({ totalProducts = 0, totalPrice = 0 }) {
   return (
     <div className="cart-container">
-      TOTAL <AiOutlineDollar />
-      {totalPrice} <AiOutlineShoppingCart /> ({totalProducts})
+      <AiOutlineDollar /> {totalPrice}
+      <AiOutlineShoppingCart /> {totalProducts}
     </div>
   );
 }

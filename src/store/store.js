@@ -1,15 +1,13 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
-import { productsReducer } from "./reducers/products.reducer";
-import { usersReducer } from "./reducers/users.reducer";
-import { composeWithDevTools } from "redux-devtools-extension";
+import productSlice from "./slices/product.slice";
+import userSlice from "./slices/user.slice";
 
-const rootReducers = combineReducers({
-  products: productsReducer,
-  users: usersReducer,
+const reducer = combineReducers({
+  products: productSlice.reducer,
+  users: userSlice.reducer,
 });
 
-export const configureStore = () => {
-  return createStore(rootReducers, composeWithDevTools(applyMiddleware(thunk)));
+export const configureToolkitStore = () => {
+  return configureStore({ reducer, devTools: true });
 };

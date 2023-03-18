@@ -6,13 +6,18 @@ import {
   getProductsSelector,
   getSelectedProductsSelector,
 } from "./store/selectors/products.selectors";
+// import {
+//   addProductToCartAsyncAction,
+//   removeProductFromCartAction,
+// } from "./store-old/actions/products.actions";
 import {
-  addProductToCartAction,
-  addProductToCartAsyncAction,
-  removeProductFromCartAction,
-} from "./store/actions/products.actions";
+  addToCartAction,
+  deleteFromCartAction,
+} from "./store/slices/product.slice";
+
 import { getUsernameSelector } from "./store/selectors/users.selectors";
-import { updateUsernameAction } from "./store/actions/users.actions";
+// import { updateUsernameAction } from "./store-old/actions/users.actions";
+import { updateUsernameAction } from "./store/slices/user.slice";
 
 function App({
   products,
@@ -57,11 +62,11 @@ const mapStateToProps = (state, props) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   addProductToCart: (productId) => {
-    dispatch(addProductToCartAsyncAction(productId));
+    dispatch(addToCartAction({ productId }));
     dispatch(updateUsernameAction("Afek"));
   },
   removeProductFromCart: (productId) => {
-    dispatch(removeProductFromCartAction(productId));
+    dispatch(deleteFromCartAction({ productId }));
     dispatch(updateUsernameAction("Hadriel"));
   },
 });
