@@ -1,0 +1,56 @@
+$mainColor: #045605;
+$mainTextColor: white;
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+}
+.cart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $mainColor;
+  color: $mainTextColor;
+  font-size: 30px;
+  padding: 1em;
+}
+
+.product-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  border: 1px solid $mainColor;
+  border-radius: 8px;
+  padding: 1em;
+  flex: 1 1 auto;
+  width: 200px;
+  height: 250px;
+  gap: 5px;
+
+  button {
+    border-radius: 8px;
+    border: 1px solid $mainColor;
+    background-color: $mainColor;
+    color: $mainTextColor;
+    width: 80%;
+    padding: 10px 5px;
+  }
+}
+
+.product-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  height: max-content;
+  padding: 2em;
+}
