@@ -4,6 +4,8 @@ import { PRODUCTS } from "../../consts";
 const sleep = (ms) =>
   new Promise((resolve, reject) =>
     setTimeout(() => {
+      return resolve();
+
       if (Math.random() * 100 > 50) resolve();
       else reject("failed to fetch!");
     }, ms)

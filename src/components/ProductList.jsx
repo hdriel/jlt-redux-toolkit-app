@@ -7,6 +7,8 @@ import { fetchProductsAsyncAction } from "../store/AsyncActions/products.thunk";
 import {
   getErrorMsgProductsSelector,
   getIsLoadingProductsSelector,
+  getProductsSelector,
+  getSelectedProductsSelector,
 } from "../store/selectors/products.selectors";
 
 function ProductList({
@@ -18,6 +20,7 @@ function ProductList({
   onRemove,
 }) {
   const dispatch = useDispatch();
+  console.log("ProductList rendered");
 
   useEffect(() => {
     if (!isLoading) dispatch(fetchProductsAsyncAction());
@@ -45,6 +48,8 @@ function ProductList({
 const mapStateToProps = (state) => ({
   isLoading: getIsLoadingProductsSelector(state),
   error: getErrorMsgProductsSelector(state),
+  products: getProductsSelector(state),
+  selectedProducts: getSelectedProductsSelector(state),
 });
 
 export default connect(mapStateToProps)(ProductList);

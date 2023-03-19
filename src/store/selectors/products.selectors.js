@@ -1,9 +1,26 @@
-export const getProductsSelector = (state) => state.products.productList ?? [];
-export const getSelectedProductsSelector = (state) => state.products.selected;
-export const getTotalPriceSelector = (state) => state.products.totalPrice;
-export const getIsLoadingProductsSelector = (state) => {
-  return state.products.isLoading ?? false;
-};
-export const getErrorMsgProductsSelector = (state) => {
-  return state.products.errorMsg ?? "";
-};
+import { createSelector } from "@reduxjs/toolkit";
+
+export const getProductsSelector = createSelector(
+  (state) => state.products.productList,
+  (products) => products ?? []
+);
+
+export const getSelectedProductsSelector = createSelector(
+  (state) => state.products.selected,
+  (value) => value
+);
+
+export const getTotalPriceSelector = createSelector(
+  (state) => state.products.totalPrice,
+  (value) => value
+);
+
+export const getIsLoadingProductsSelector = createSelector(
+  (state) => state.products.isLoading,
+  (value) => value ?? false
+);
+
+export const getErrorMsgProductsSelector = createSelector(
+  (state) => state.products.errorMsg,
+  (value) => value ?? ""
+);
