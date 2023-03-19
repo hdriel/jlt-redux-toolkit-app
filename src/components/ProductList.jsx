@@ -1,20 +1,50 @@
-import React from "react";
-import Product from "./Product";
+import React, { useEffect } from "react";
+import { PacmanLoader } from "react-spinners";
+import { useDispatch, connect } from "react-redux";
 
-function ProductList({ products, selectedProducts, onAdd, onRemove }) {
+import Product from "./Product";
+import { fetchProductsAsyncAction } from "../store/AsyncActions/products.thunk";
+import {
+  getErrorMsgProductsSelector,
+  getIsLoadingProductsSelector,
+} from "../store/selectors/products.selectors";
+
+function ProductList({
+  isLoading,
+  error,
+  products,
+  selectedProducts,
+  onAdd,
+  onRemove,
+}) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!isLoading) dispatch(fetchProductsAsyncAction());
+  }, []);
+
   return (
     <div className="product-list-container">
-      {products.map((product) => (
-        <Product
-          key={product.id}
-          selected={selectedProducts[product.id] ?? 0}
-          onAdd={onAdd}
-          onRemove={onRemove}
-          {...product}
-        />
-      ))}
+      {isLoading && <PacmanLoader color="#36d7b7" />}
+      {!isLoading &&
+        !error &&
+        products.map((product) => (
+          <Product
+            key={product.id}
+            selected={selectedProducts[product.id] ?? 0}
+            onAdd={onAdd}
+            onRemove={onRemove}
+            {...product}
+          />
+        ))}
+      {!isLoading && error && <h1 style={{ color: "red" }}>{error}</h1>}
     </div>
   );
 }
 
-export default ProductList;
+const mapStateToProps = (state) => ({
+  isLoading: getIsLoadingProductsSelector(state),
+  error: getErrorMsgProductsSelector(state),
+});
+
+export default connect(mapStateToProps)(ProductList);

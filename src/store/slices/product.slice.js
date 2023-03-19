@@ -1,12 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { PRODUCTS } from "../../consts";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { fetchProductsAsyncAction } from "../AsyncActions/products.thunk";
 
 const productSlice = createSlice({
   name: "products",
   initialState: {
-    productList: PRODUCTS,
+    productList: [],
     selected: {},
     totalPrice: 0,
+    isLoading: false,
+    errorMsg: "",
   },
   reducers: {
     initProducts(state, action) {
@@ -35,6 +37,23 @@ const productSlice = createSlice({
 
       delete state.selected[productId];
     },
+  },
+  extraReducers: ({ addMatcher, addCase }) => {
+    addCase(fetchProductsAsyncAction.pending, (state) => {
+      state.isLoading = true;
+    });
+
+    addMatcher(
+      isAnyOf(
+        fetchProductsAsyncAction.fulfilled,
+        fetchProductsAsyncAction.rejected
+      ),
+      (state, action) => {
+        state.isLoading = false;
+        state.productList = action.payload ?? [];
+        state.errorMsg = action.error?.message ?? "";
+      }
+    );
   },
 });
 
