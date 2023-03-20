@@ -8,6 +8,12 @@ const reducer = combineReducers({
   users: userSlice.reducer,
 });
 
-export const configureToolkitStore = () => {
-  return configureStore({ reducer, devTools: true });
+let store = null;
+
+export const initStore = () => {
+  store = configureStore({ reducer, devTools: true });
+  return store;
 };
+
+export const getState = () => store?.getState();
+export const dispatch = (action) => store?.dispatch(action);

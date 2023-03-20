@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import { Header, ProductList } from "./components";
@@ -8,6 +8,7 @@ import {
 } from "./store/slices/product.slice";
 
 import { updateUsernameAction } from "./store/slices/user.slice";
+import { fetchProductList } from "./logic/products.logic";
 
 function App({ addProductToCart, removeProductFromCart }) {
   return (

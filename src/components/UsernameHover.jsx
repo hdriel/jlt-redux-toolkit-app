@@ -5,7 +5,6 @@ import { updateUsernameAction } from "../store/slices/user.slice";
 
 const UsernameHover = ({ username, changeUsernameTo }) => {
   const [isHover, setIsHover] = useState(false);
-  console.log("UsernameHover rendered");
 
   useEffect(() => {
     changeUsernameTo(isHover ? "Hadriel" : "Afek");

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { PacmanLoader } from "react-spinners";
-import { useDispatch, connect } from "react-redux";
+import { connect } from "react-redux";
 
 import Product from "./Product";
 import { fetchProductsAsyncAction } from "../store/AsyncActions/products.thunk";
@@ -10,6 +10,7 @@ import {
   getProductsSelector,
   getSelectedProductsSelector,
 } from "../store/selectors/products.selectors";
+import { fetchProductList } from "../logic/products.logic";
 
 function ProductList({
   isLoading,
@@ -19,11 +20,8 @@ function ProductList({
   onAdd,
   onRemove,
 }) {
-  const dispatch = useDispatch();
-  console.log("ProductList rendered");
-
   useEffect(() => {
-    if (!isLoading) dispatch(fetchProductsAsyncAction());
+    if (!isLoading) fetchProductList();
   }, []);
 
   return (
