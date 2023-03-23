@@ -14,7 +14,11 @@ function App({ addProductToCart, removeProductFromCart }) {
   return (
     <div className="app-container">
       <Header title={"Redux App Store"} />
-      <ProductList onAdd={addProductToCart} onRemove={removeProductFromCart} />
+      <ProductList
+        onAdd={addProductToCart}
+        onRemove={removeProductFromCart}
+        excludeIds={["4ff690a3-d994-471e-995e-ca57b3dd44fb"]}
+      />
     </div>
   );
 }

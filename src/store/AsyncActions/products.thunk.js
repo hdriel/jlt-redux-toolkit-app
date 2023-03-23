@@ -14,7 +14,7 @@ const sleep = (ms) =>
 export const fetchProductsAsyncAction = createAsyncThunk(
   "fetch-products",
   async () => {
-    await sleep(3 * 1000);
+    await sleep(0.5 * 1000);
     return PRODUCTS;
   }
 );

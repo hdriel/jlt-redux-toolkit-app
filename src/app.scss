@@ -19,6 +19,8 @@ $mainTextColor: white;
   color: $mainTextColor;
   font-size: 30px;
   padding: 1em;
+  position: sticky;
+  top: 0;
 }
 
 .product-container {
